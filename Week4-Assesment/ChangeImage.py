@@ -31,7 +31,13 @@ def format_image(path_file, save_path):
     arg2 is where the formatted images will be save."""
 
     list_image = listdir(path_file)
+    list_filter_image = []
+
     for img in list_image:
+        if img[-4:] == "tiff":
+            list_filter_image.append(img)
+
+    for img in list_filter_image:
         # path_content = path_file + "\\" + img\
         path_content = path_custom(img, path_file)
         image = Image.open(path_content).convert("RGB")

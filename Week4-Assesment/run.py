@@ -26,7 +26,13 @@ def upload_description(desc_path, img_path, url):
     data = {}
     list_desc = os.listdir(desc_path)
     list_img = os.listdir(img_path)
-    for desc, img in zip(list_desc, list_img):
+    list_filter_img = []
+
+    for img in list_img:
+        if img[-4:] == "jpeg":
+            list_filter_img.append(img)
+
+    for desc, img in zip(list_desc, list_filter_img):
         with open(custom_path(desc_path, desc), "r") as file:
             content = file.read()
             list_content = content.split("\n")[0:3]
